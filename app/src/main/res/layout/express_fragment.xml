@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        app:theme="@style/MyEditText"
+        android:hint="请输入设备编号"
+        android:id="@+id/express_fg_et"
+        android:phoneNumber="true"
+        android:lines="1"
+        android:maxLength="5"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="确定"
+        android:id="@+id/express_fg_btn"
+        android:background="@drawable/confirm_press"
+        android:textColor="@color/login_btn_bgd_text_white"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/express_fg_lv"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"></ListView>
+
+</LinearLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.mtyxp.hangzhoumtyxp.controller.activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <com.bm.library.PhotoView
+                android:id="@+id/attention_small_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/attention"
+                android:scaleType="center"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/user_login_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:text="注册"
+                android:textColor="@drawable/login_text_bdg"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:src="@drawable/company_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="杭州威霖网络科技有限公司"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HangZhou WeiLin Network Technology Co., Ltd."
+            android:gravity="center"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"/>
+
+        <EditText
+            android:id="@+id/user_login_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="用户名"
+            android:lines="1"
+            android:maxLength="20"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/MyEditText" />
+
+        <EditText
+            android:id="@+id/user_login_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="密码"
+            android:lines="1"
+            android:maxLength="20"
+            android:password="true"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/MyEditText" />
+
+        <Button
+            android:id="@+id/user_login_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/login_btn_bgd"
+            android:text="登录"
+            android:textColor="@color/login_btn_bgd_text_white" />
+
+    </LinearLayout>
+
+    <com.bm.library.PhotoView
+        android:id="@+id/attention_big_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/small_big"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

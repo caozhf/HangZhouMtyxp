@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+
+        <shape android:shape="rectangle">
+            <stroke android:color="@color/login_btn_bdg_strok" android:width="2dp"></stroke>
+            <solid android:color="@color/confirm_no_press"></solid>
+        </shape>
+
+    </item>
+
+    <item android:state_pressed="true">
+
+        <shape android:shape="rectangle">
+            <stroke android:color="@color/login_btn_bdg_strok" android:width="2dp"></stroke>
+            <solid android:color="@color/confirm_press"></solid>
+
+        </shape>
+
+    </item>
+
+</selector>
