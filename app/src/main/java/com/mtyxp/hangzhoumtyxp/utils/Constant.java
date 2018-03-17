@@ -12,4 +12,7 @@ public class Constant {
     public static final String OPEN_DOOR_IMG = "http://www.yifeidadada.com/controller/get-key-qr/?pk=TEST00";
     public static final String OPEN_DOOR_PWD = "http://www.yifeidadada.com/controller/get-key/?pk=TEST00";
 
+    public static final String UPDATE_VERSION = "http://10.0.2.2:8080/updatejson/updatejsondata.json";
+
+
 }

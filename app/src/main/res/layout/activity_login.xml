@@ -105,4 +105,15 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update"
+        android:visibility="gone"
+        android:textSize="28sp"
+        android:gravity="center"
+        android:id="@+id/update_vision"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
