@@ -365,4 +365,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("login_start");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("login_onrestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("login_onDestroy");
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("login_onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("login_onStop");
+    }
 }

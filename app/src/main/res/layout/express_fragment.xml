@@ -10,9 +10,7 @@
         app:theme="@style/MyEditText"
         android:hint="请输入设备编号"
         android:id="@+id/express_fg_et"
-        android:phoneNumber="true"
         android:lines="1"
-        android:maxLength="5"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"/>
 

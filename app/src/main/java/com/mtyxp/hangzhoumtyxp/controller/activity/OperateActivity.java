@@ -1,5 +1,6 @@
 package com.mtyxp.hangzhoumtyxp.controller.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,11 +38,15 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    private static Activity operate;
+    private FragmentTransaction transaction;
+    private Fragment mfragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operate);
+        operate = this;
         fragmentManager = getSupportFragmentManager();
         initToolbar();
         initMenuFragment();
@@ -130,11 +135,12 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
+        mfragment = fragment;
         invalidateOptionsMenu();
         String backStackName = fragment.getClass().getName();
         boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStackName, 0);
         if (!fragmentPopped) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction = fragmentManager.beginTransaction();
             transaction.replace(containerId, fragment, backStackName)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             if (addToBackStack)
@@ -198,5 +204,39 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
     @Override
     public void onMenuItemLongClick(View clickedView, int position) {
         Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("operate_onDestroy");
+//        transaction.remove(mfragment);
+//        startActivity(new Intent(OperateActivity.this,LoginActivity.class));
+//        finish();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("operate_onResume");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("operate_onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("operate_onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("operate_restart");
     }
 }

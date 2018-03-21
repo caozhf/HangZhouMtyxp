@@ -112,6 +112,8 @@ public class ExpressFragment extends Fragment {
             }
         });
 
+        final String complete_dis_url = Constant.COMPLETE_DIS+express_fg_et.getText().toString().trim();
+
         achieve_express.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +125,7 @@ public class ExpressFragment extends Fragment {
                                 .add("achieve", "complete distribution——" + pass_number)
                                 .build();
                         Request.Builder builder = new Request.Builder();
-                        Request request = builder.get().url(Constant.COMPLETE_DIS).post(body).build();
+                        Request request = builder.get().url(complete_dis_url).post(body).build();
                         Call call = client.newCall(request);
                         call.enqueue(new Callback() {
                             @Override
@@ -153,6 +155,8 @@ public class ExpressFragment extends Fragment {
     private void listView_Head(String openDoorImg, String openDoorPwd) {
 
         String url_img = openDoorImg + express_fg_et.getText().toString().trim();
+        String url_pwd = openDoorPwd + express_fg_et.getText().toString().trim();
+
         Call call_img = OkhttpNetService.GetOpenDoorImgAndPwd(url_img);
         call_img.enqueue(new Callback() {
             @Override
@@ -178,7 +182,7 @@ public class ExpressFragment extends Fragment {
             }
         });
 
-        Call call_pwd = OkhttpNetService.GetOpenDoorImgAndPwd(openDoorPwd);
+        Call call_pwd = OkhttpNetService.GetOpenDoorImgAndPwd(url_pwd);
         call_pwd.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {
@@ -291,5 +295,17 @@ public class ExpressFragment extends Fragment {
 
         lbm = LocalBroadcastManager.getInstance(getContext());
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("fragment");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("resume_fra");
     }
 }
