@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import com.mtyxp.hangzhoumtyxp.controller.fragment.CustomerServiceFragment;
 import com.mtyxp.hangzhoumtyxp.controller.fragment.ExpressFragment;
 import com.mtyxp.hangzhoumtyxp.controller.fragment.PersonalInfoFragment;
 import com.mtyxp.hangzhoumtyxp.controller.fragment.StatisticFragment;
+import com.mtyxp.hangzhoumtyxp.utils.GetVersionBroadcast;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
@@ -41,17 +43,32 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
     private static Activity operate;
     private FragmentTransaction transaction;
     private Fragment mfragment = null;
+    private long mkeyTime;
+
+    private int operate_local_version_num;
+    private int operate_serve_version_num;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operate);
+
+        CompareVersionNum();
+
         operate = this;
         fragmentManager = getSupportFragmentManager();
         initToolbar();
         initMenuFragment();
         addFragment(new ExpressFragment(), true, R.id.containers);
     }
+
+    private void CompareVersionNum() {
+        operate_local_version_num = GetVersionBroadcast.local_version_num;
+        operate_serve_version_num = GetVersionBroadcast.serve_version_num;
+        System.out.println("ver"+operate_local_version_num+"vert"+operate_serve_version_num);
+    }
+
     private void initMenuFragment() {
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
@@ -209,34 +226,38 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("operate_onDestroy");
-//        transaction.remove(mfragment);
-//        startActivity(new Intent(OperateActivity.this,LoginActivity.class));
-//        finish();
+//        System.out.println("operate_onDestroy");
+        transaction.remove(mfragment);
+        BmobUser.logOut();
+        finish();
 
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("operate_onResume");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        System.out.println("operate_onStart");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        System.out.println("operate_onStop");
+        if (operate_local_version_num<operate_serve_version_num){
+            BmobUser.logOut();
+            finish();
+        }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        System.out.println("operate_restart");
+
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            if((System.currentTimeMillis() - mkeyTime)>2000){
+                mkeyTime = System.currentTimeMillis();
+                Toast.makeText(this,"Press the exit program again!",Toast.LENGTH_SHORT).show();
+            }else {
+                BmobUser.logOut();
+                finish();
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
+
 }

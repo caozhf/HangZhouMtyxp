@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -46,16 +47,16 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private PhotoView attention_big_img,attention_small_img;
+    private PhotoView attention_big_img, attention_small_img;
     private Info mRectF;
 
-    private TextView user_login_register,update_vision;
-    private EditText user_login_name,user_login_pwd;
+    private TextView user_login_register, update_vision;
+    private EditText user_login_name, user_login_pwd;
     private Button user_login_login;
     private BmobUser currentUser;
     private boolean isNet;
 
-    private String[] dialog_item = new String[]{"更新","取消"};
+    private String[] dialog_item = new String[]{"更新", "取消"};
 
     private static final int UPDATE_YES = 1;
     private static final int UPDATE_NO = 2;
@@ -72,11 +73,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private Message message = new Message();
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case UPDATE_YES:
                     ShowUpdateDialog();
                     break;
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     break;
                 case JSON_ERROR:
-                    Toast.makeText(LoginActivity.this,"请检查网络",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "请检查网络", Toast.LENGTH_SHORT).show();
                     break;
             }
 
@@ -99,11 +100,11 @@ public class LoginActivity extends AppCompatActivity {
         builder.setItems(dialog_item, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (i == 0){
+                if (i == 0) {
                     StartUpdate();
                 }
-                if (i == 1){
-                    Toast.makeText(LoginActivity.this,"您已取消更新！",Toast.LENGTH_SHORT).show();
+                if (i == 1) {
+                    Toast.makeText(LoginActivity.this, "您已取消更新！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void DownLoadApk() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 
             final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AppUpdate.apk";
             HttpUtils httpUtils = new HttpUtils();
@@ -131,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                     user_login_name.setVisibility(View.GONE);
                     user_login_pwd.setVisibility(View.GONE);
                     user_login_login.setVisibility(View.GONE);
-                    update_vision.setText(100*current/total+"%");
+                    update_vision.setText(100 * current / total + "%");
                     System.out.println(isUploading);
                 }
 
@@ -144,20 +145,22 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_DEFAULT);
-                    intent.setDataAndType(Uri.fromFile(new File(path)),"application/vnd.android.package-archive");
+                    intent.setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive");
                     startActivity(intent);
 
                 }
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-                    System.out.println("reason"+s);
+                    System.out.println("reason" + s);
                 }
             });
-        }else {
-            Toast.makeText(LoginActivity.this,"no find SD card!",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LoginActivity.this, "no find SD card!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LoginActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,15 +200,24 @@ public class LoginActivity extends AppCompatActivity {
                     serveContent = jsonObject.getString("content");
                     serveUrl = jsonObject.getString("url");
 
-                    if (local_version_code<serveVersionCode){
+                    if (local_version_code < serveVersionCode) {
                         message.what = UPDATE_YES;
-                    }else {
+
+                        Intent intent = new Intent();
+                        intent.setAction("get_version_number");
+                        Bundle extras = new Bundle();
+                        extras.putInt("local_version_num",local_version_code);
+                        extras.putInt("serve_version_num",serveVersionCode);
+                        intent.putExtras(extras);
+                        lbm.sendBroadcast(intent);
+
+                    } else {
                         message.what = UPDATE_NO;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     message.what = IO_ERROR;
-                }finally {
+                } finally {
                     try {
                         Thread.sleep(2000);
                         handler.sendMessage(message);
@@ -220,8 +232,8 @@ public class LoginActivity extends AppCompatActivity {
     private void initListener() {
 
         currentUser = BmobUser.getCurrentUser();
-        if (currentUser!=null){
-            startActivity(new Intent(getApplication(),OperateActivity.class));
+        if (currentUser != null) {
+            startActivity(new Intent(getApplication(), OperateActivity.class));
             finish();
         }
         attention_small_img.setOnClickListener(new View.OnClickListener() {
@@ -249,11 +261,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
         user_login_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
 
@@ -263,10 +274,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 final String username = user_login_name.getText().toString().trim();
                 final String userpwd = user_login_pwd.getText().toString().trim();
-                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(userpwd)){
-                    Toast.makeText(getApplicationContext(),"用户名或密码不能为空",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(userpwd)) {
+                    Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+                } else {
                     Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
                         @Override
                         public void run() {
@@ -274,8 +284,8 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     user_login_login.setText("正在登录！");
-                                    if (!isNet){
-                                        Toast.makeText(getApplicationContext(),"系统错误，请检查您的网络！",Toast.LENGTH_SHORT).show();
+                                    if (!isNet) {
+                                        Toast.makeText(getApplicationContext(), "系统错误，请检查您的网络！", Toast.LENGTH_SHORT).show();
                                         user_login_login.setText("登录");
                                     }
                                     new Handler().postDelayed(new Runnable() {
@@ -288,19 +298,19 @@ public class LoginActivity extends AppCompatActivity {
                                             user.login(new SaveListener<BmobUser>() {
                                                 @Override
                                                 public void done(BmobUser bmobUser, BmobException e) {
-                                                    if(e == null){
+                                                    if (e == null) {
                                                         String user_info = username + "##" + userpwd;
-                                                        SpUtils.getInstance(getApplicationContext()).save("user_account",user_info);
-                                                        Toast.makeText(getApplicationContext(),"登录成功！",Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(getApplicationContext(),OperateActivity.class));
+                                                        SpUtils.getInstance(getApplicationContext()).save("user_account", user_info);
+                                                        Toast.makeText(getApplicationContext(), "登录成功！", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(getApplicationContext(), OperateActivity.class));
                                                         finish();
-                                                    }else {
-                                                        Toast.makeText(getApplicationContext(),"failure failure"+e.toString(),Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        Toast.makeText(getApplicationContext(), "failure failure" + e.toString(), Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
                                         }
-                                    },2000);
+                                    }, 2000);
                                 }
                             });
                         }
@@ -313,7 +323,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (attention_big_img.getVisibility() == View.VISIBLE){
+        if (attention_big_img.getVisibility() == View.VISIBLE) {
             attention_big_img.animaTo(mRectF, new Runnable() {
                 @Override
                 public void run() {
@@ -321,7 +331,7 @@ public class LoginActivity extends AppCompatActivity {
                     attention_small_img.setVisibility(View.VISIBLE);
                 }
             });
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -352,9 +362,9 @@ public class LoginActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (TextUtils.isEmpty(user_account)){
-                        Toast.makeText(getApplicationContext(),"请先登录！",Toast.LENGTH_SHORT).show();
-                        }else {
+                        if (TextUtils.isEmpty(user_account)) {
+                            Toast.makeText(getApplicationContext(), "请先登录！", Toast.LENGTH_SHORT).show();
+                        } else {
                             String[] split = user_account.split("##");
                             user_login_name.setText(split[0]);
                             user_login_pwd.setText(split[1]);
@@ -367,33 +377,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        System.out.println("login_start");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        System.out.println("login_onrestart");
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("login_onDestroy");
         finish();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("login_onResume");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        System.out.println("login_onStop");
-    }
 }
