@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,12 +49,13 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
     private int operate_local_version_num;
     private int operate_serve_version_num;
 
+    private WebView operate_webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operate);
-
+        
         CompareVersionNum();
 
         operate = this;
@@ -61,7 +63,25 @@ public class OperateActivity extends AppCompatActivity implements OnMenuItemClic
         initToolbar();
         initMenuFragment();
         addFragment(new ExpressFragment(), true, R.id.containers);
+
     }
+
+//    private void initData() {
+//        operate_webview.loadUrl(Constant.ORDER_COLLECT);
+//
+//        WebSettings settings = operate_webview.getSettings();
+//        settings.setUseWideViewPort(true);
+//        settings.setLoadWithOverviewMode(true);
+//        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//
+//        operate_webview.setWebChromeClient(new WebChromeClient(){
+//            @Override
+//            public void onReceivedTitle(WebView view, String title) {
+//                super.onReceivedTitle(view, title);
+//            }
+//        });
+//        operate_webview.clearFormData();
+//    }
 
     private void CompareVersionNum() {
         operate_local_version_num = GetVersionBroadcast.local_version_num;

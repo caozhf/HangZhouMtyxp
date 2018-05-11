@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.mtyxp.hangzhoumtyxp.utils.DeviceNumBroadCast;
 import com.mtyxp.hangzhoumtyxp.utils.GetVersionBroadcast;
 import com.mtyxp.hangzhoumtyxp.utils.LocalBroadCast;
 
@@ -27,6 +28,7 @@ public class Model {
     private LocalBroadCast localBroadCast;
     private GetVersionBroadcast get_version_bd;
 
+    private DeviceNumBroadCast device_num_bc;
 
     public Model() {
     }
@@ -65,6 +67,14 @@ public class Model {
         localBroadCast = new LocalBroadCast();
         filter.addAction("device_num");
         lbm.registerReceiver(localBroadCast,filter);
+    }
+
+    public void initGetDeviceNumBroadCast(){
+        lbm = LocalBroadcastManager.getInstance(context);
+        filter = new IntentFilter();
+        device_num_bc = new DeviceNumBroadCast();
+        filter.addAction("this_device_num");
+        lbm.registerReceiver(device_num_bc,filter);
     }
 
     public void GetVersionNum(){

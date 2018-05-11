@@ -17,6 +17,7 @@ public class InitApplication extends Application {
         Bmob.initialize(this,"9a81ba906cb12cb467432f2cf1146de0");
         Model.getInstance().initContext(this);
         Model.getInstance().initBroadCast();
+        Model.getInstance().initGetDeviceNumBroadCast();
         Model.getInstance().GetVersionNum();
     }
 }

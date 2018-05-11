@@ -27,7 +27,11 @@
         <activity
             android:name=".controller.activity.RegisterActivity"
             android:theme="@style/AppThemeTranslucent" />
-        <activity android:name=".controller.activity.OperateActivity"></activity>
+        <activity android:name=".controller.activity.OperateActivity" />
+        <activity android:name=".controller.activity.DataStatisticActivity" />
+        <activity android:name=".controller.activity.RemainCheckActivity"></activity>
+
+        <receiver android:name=".utils.DeviceNumBroadCast" />
     </application>
 
 </manifest>

@@ -138,15 +138,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess(ResponseInfo<File> responseInfo) {
-                    update_vision.setVisibility(View.GONE);
-                    user_login_name.setVisibility(View.VISIBLE);
-                    user_login_pwd.setVisibility(View.VISIBLE);
-                    user_login_login.setVisibility(View.VISIBLE);
+//                    update_vision.setVisibility(View.GONE);
+//                    user_login_name.setVisibility(View.VISIBLE);
+//                    user_login_pwd.setVisibility(View.VISIBLE);
+//                    user_login_login.setVisibility(View.VISIBLE);
+
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive");
                     startActivity(intent);
+                    finish();
 
                 }
 

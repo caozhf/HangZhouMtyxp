@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <EditText
-        android:layout_width="match_parent"
-        app:theme="@style/MyEditText"
-        android:hint="请输入设备编号"
         android:id="@+id/express_fg_et"
-        android:lines="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:hint="请输入设备编号"
+        android:lines="1"
+        app:theme="@style/MyEditText" />
 
     <Button
+        android:id="@+id/express_fg_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:text="确定"
-        android:id="@+id/express_fg_btn"
+        android:layout_marginRight="20dp"
         android:background="@drawable/confirm_press"
-        android:textColor="@color/login_btn_bgd_text_white"/>
+        android:text="确定"
+        android:textColor="@color/login_btn_bgd_text_white" />
 
     <ListView
-        android:layout_width="match_parent"
         android:id="@+id/express_fg_lv"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"></ListView>
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"></ListView>
 
 </LinearLayout>

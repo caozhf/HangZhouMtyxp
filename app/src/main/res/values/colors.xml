@@ -22,4 +22,8 @@
 
     <color name="confirm_no_press">#FFA07A</color>
     <color name="confirm_press">#FF7F00</color>
+    <color name="main_bottom_bgd">#EDEDED</color>
+    <color name="statistic_detail_text">#CD2626</color>
+
+    <color name="statistic_detail_ly_background">#EEE9BF</color>
 </resources>

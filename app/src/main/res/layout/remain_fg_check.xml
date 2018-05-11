@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/remain_check_confirm_add_id"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/btn_color"
+                    android:gravity="center"
+                    android:text="添加设备编号" />
+
+                <EditText
+                    android:id="@+id/remain_check_device_num"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="device_id"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="back"
+                    android:id="@+id/remain_check_back"
+                    android:background="@drawable/btn_color"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/title_line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="产品编号"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="产品名称"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="产品数量"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道1"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title1"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:hint="产品数量"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道2"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:hint="产品编号"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:phoneNumber="true"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道3"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:hint="产品数量"
+                    android:phoneNumber="true"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道4"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id4"
+                    android:layout_width="100dp"
+                    android:phoneNumber="true"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title4"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num4"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道5"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id5"
+                    android:layout_width="100dp"
+                    android:phoneNumber="true"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title5"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num5"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:singleLine="true"
+                    android:phoneNumber="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道6"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:phoneNumber="true"
+                    android:maxLength="4"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title6"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num6"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道7"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id7"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title7"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num7"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道8"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id8"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:phoneNumber="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title8"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num8"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道9"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id9"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title9"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num9"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道10"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title10"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道11"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id11"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:hint="产品编号"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title11"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num11"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道12"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id12"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:phoneNumber="true"
+                    android:text="0"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title12"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num12"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:phoneNumber="true"
+                    android:gravity="center"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道13"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id13"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="产品编号"
+                    android:singleLine="true"
+                    android:phoneNumber="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title13"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num13"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:phoneNumber="true"
+                    android:maxLength="4"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/line_color"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/login_btn_bgd_text_white"
+                    android:gravity="center"
+                    android:text="货道14"
+                    android:textColor="@color/text_bdg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/remain_check_id14"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:hint="产品编号"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+                <Spinner
+                    android:id="@+id/remain_check_title14"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"></Spinner>
+
+                <EditText
+                    android:id="@+id/remain_check_num14"
+                    android:layout_width="100dp"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:phoneNumber="true"
+                    android:hint="产品数量"
+                    android:text="0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/remain_check_sort"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="数据整理" />
+
+                <Button
+                    android:id="@+id/remain_check_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="确认添加数据" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

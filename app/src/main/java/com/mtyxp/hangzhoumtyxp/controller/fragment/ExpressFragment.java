@@ -38,7 +38,6 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -112,7 +111,9 @@ public class ExpressFragment extends Fragment {
             }
         });
 
-        final String complete_dis_url = Constant.COMPLETE_DIS+express_fg_et.getText().toString().trim();
+
+
+
 
         achieve_express.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,12 +121,13 @@ public class ExpressFragment extends Fragment {
                 Model.getInstance().getGlobalThreadPool().execute(new Runnable() {
                     @Override
                     public void run() {
+                        String complete_dis_url = Constant.COMPLETE_DIS+express_fg_et.getText().toString();
                         OkHttpClient client = new OkHttpClient();
-                        FormBody body = new FormBody.Builder()
-                                .add("achieve", "complete distribution——" + pass_number)
-                                .build();
+//                        FormBody body = new FormBody.Builder()
+//                                .add("achieve", "complete distribution——" + pass_number)
+//                                .build();
                         Request.Builder builder = new Request.Builder();
-                        Request request = builder.get().url(complete_dis_url).post(body).build();
+                        Request request = builder.get().url(complete_dis_url).build();
                         Call call = client.newCall(request);
                         call.enqueue(new Callback() {
                             @Override
@@ -237,7 +239,6 @@ public class ExpressFragment extends Fragment {
 //                    intent.putExtra("num",pass_number);
 //                    lbm.sendBroadcast(intent);
 
-
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -279,6 +280,7 @@ public class ExpressFragment extends Fragment {
     }
 
     private void initView() {
+
         express_fg_et = view.findViewById(R.id.express_fg_et);
         express_fg_btn = view.findViewById(R.id.express_fg_btn);
         express_fg_lv = view.findViewById(R.id.express_fg_lv);
