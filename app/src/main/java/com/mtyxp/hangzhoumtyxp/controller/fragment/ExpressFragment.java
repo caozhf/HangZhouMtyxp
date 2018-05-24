@@ -294,7 +294,6 @@ public class ExpressFragment extends Fragment {
         express_fg_lv.addFooterView(footlayout, null, false);
         achieve_express = footlayout.findViewById(R.id.express_fg_lv_foot_achieve);
 
-
         lbm = LocalBroadcastManager.getInstance(getContext());
 
     }

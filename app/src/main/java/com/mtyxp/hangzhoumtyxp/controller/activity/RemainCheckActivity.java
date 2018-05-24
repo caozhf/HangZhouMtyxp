@@ -17,6 +17,23 @@ import android.widget.Toast;
 
 import com.mtyxp.hangzhoumtyxp.R;
 import com.mtyxp.hangzhoumtyxp.controller.fragment.remain_check_fragment.RemainCheckFragment;
+import com.mtyxp.hangzhoumtyxp.model.bean.Bashinai;
+import com.mtyxp.hangzhoumtyxp.model.bean.GoodsTitleInfo;
+import com.mtyxp.hangzhoumtyxp.utils.Constant;
+import com.mtyxp.hangzhoumtyxp.utils.OkhttpNetService;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class RemainCheckActivity extends AppCompatActivity {
 
@@ -35,6 +52,11 @@ public class RemainCheckActivity extends AppCompatActivity {
 
     private LocalBroadcastManager lbm;
 
+    private List<Bashinai> mlist = new ArrayList<Bashinai>();
+
+//    private List spinner_item = new ArrayList();
+    private List<GoodsTitleInfo> mlist_goods_info = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +71,75 @@ public class RemainCheckActivity extends AppCompatActivity {
 
         remain_check_left_drawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
 
-                Intent intent = new Intent();
-                intent.setAction("this_device_num");
-                intent.putExtra("data_d_n",device_num[position]);
-                lbm.sendBroadcast(intent);
+                System.out.println(device_num[position]);
+
+                Call call = OkhttpNetService.DefaultDataInput(Constant.TEMP_QUANTITY_CHECK +device_num[position]);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Toast.makeText(RemainCheckActivity.this, "error+" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (!response.isSuccessful()) {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(RemainCheckActivity.this, "请求数据不存在！", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else {
+                            String string = response.body().string();
+                            if (string.length()<40){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(RemainCheckActivity.this, "请求数据不存在！", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }else {
+                                try {
+                                    mlist.clear();
+                                    mlist_goods_info.clear();
+                                    JSONObject object = new JSONObject(string);
+                                    for (int i = 1; i < 13; i++) {
+                                        Bashinai bashinai = new Bashinai();
+
+                                        JSONArray jsonArray = object.getJSONArray(i + "");
+                                        bashinai.setBa_id(jsonArray.getInt(0));
+                                        bashinai.setPass_num(i);
+                                        bashinai.setBa_title(jsonArray.getString(1));
+                                        bashinai.setBa_num(jsonArray.getInt(2));
+                                        mlist.add(bashinai);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                for (int i=0;i<12;i++){
+                                    GoodsTitleInfo info = new GoodsTitleInfo(mlist.get(i).getBa_id(),mlist.get(i).getBa_title());
+                                    mlist_goods_info.add(info);
+                                }
+
+                                Intent intent = new Intent();
+                                intent.setAction("this_device_num");
+                                intent.putExtra("data_d_n",device_num[position]);
+                                intent.putExtra("goods_info", (Serializable) mlist_goods_info);
+                                lbm.sendBroadcast(intent);
+
+                                System.out.println(mlist_goods_info);
+
+                            }
+
+                        }
+                    }
+                });
+
 
                 Toast.makeText(RemainCheckActivity.this,"已选择"+device_num[position],Toast.LENGTH_SHORT).show();
 
@@ -62,6 +147,85 @@ public class RemainCheckActivity extends AppCompatActivity {
             }
         });
     }
+
+//    public class SpinnerItem{
+//        private String Key = "";
+//        private String Value = "";
+//
+//        public SpinnerItem() {
+//            Key = "";
+//            Value = "";
+//        }
+//
+//        public SpinnerItem(String _Key, String _Value) {
+//            Key = _Key;
+//            Value = _Value;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return Value;
+//        }
+//
+//        public String GetKey() {
+//            return Key;
+//        }
+//
+//        public String GetValue() {
+//            return Value;
+//        }
+//
+//    }
+
+//    private void DefaultData() {
+//        Call call = OkhttpNetService.DefaultDataInput(Constant.TEMP_QUANTITY_CHECK + DeviceNumBroadCast.tem_un);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Toast.makeText(getActivity(), "error+" + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                if (!response.isSuccessful()) {
+//
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(getContext(), "请求数据不存在！", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                } else {
+//
+//                    String string = response.body().string();
+//                    try {
+//                        JSONObject object = new JSONObject(string);
+//                        for (int i = 1; i < 13; i++) {
+//                            Bashinai bashinai = new Bashinai();
+//
+//                            JSONArray jsonArray = object.getJSONArray(i + "");
+//                            bashinai.setBa_id(jsonArray.getInt(0));
+//                            bashinai.setPass_num(i);
+//                            bashinai.setBa_title(jsonArray.getString(1));
+//                            bashinai.setBa_num(jsonArray.getInt(2));
+//                            mlist.add(bashinai);
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    System.out.println("kk"+mlist.toString());
+//
+//                    for (int i=0;i<12;i++){
+//                        SpinnerItem item = new SpinnerItem(String.valueOf(mlist.get(i).getBa_id()),mlist.get(i).getBa_title());
+//                        spinner_item.add(item);
+//                    }
+//
+//                }
+//            }
+//        });
+//    }
+
 
     private void initView() {
 

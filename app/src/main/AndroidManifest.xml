@@ -29,9 +29,12 @@
             android:theme="@style/AppThemeTranslucent" />
         <activity android:name=".controller.activity.OperateActivity" />
         <activity android:name=".controller.activity.DataStatisticActivity" />
-        <activity android:name=".controller.activity.RemainCheckActivity"></activity>
+        <activity android:name=".controller.activity.RemainCheckActivity" />
 
         <receiver android:name=".utils.DeviceNumBroadCast" />
+
+        <activity android:name=".controller.temp_activity.TempDetailActivity" />
+        <activity android:name=".controller.temp_activity.TomorrowOrderActivity"></activity>
     </application>
 
 </manifest>

@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/confirm_press"
         android:text="数据自输入配送操作"
         android:textColor="@color/login_btn_bgd_text_white"
@@ -23,10 +23,36 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/confirm_press"
         android:text="余量输入自动匹配查询"
+        android:textColor="@color/login_btn_bgd_text_white"
+        />
+
+    <Button
+        android:id="@+id/statistic_fg_other_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/confirm_press"
+        android:text="第二天需要配送的月订单汇总"
+        android:textColor="@color/login_btn_bgd_text_white"
+        />
+
+    <Button
+        android:id="@+id/statistic_fg_detail_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/confirm_press"
+        android:text="地推临时数据查询"
         android:textColor="@color/login_btn_bgd_text_white"
         />
 

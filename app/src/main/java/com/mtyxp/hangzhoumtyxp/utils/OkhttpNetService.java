@@ -53,4 +53,15 @@ public class OkhttpNetService {
         return call;
     }
 
+    public static Call DefaultDataInput(String get_url){
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .build();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.get().url(get_url).build();
+        Call call = client.newCall(request);
+        return call;
+    }
+
 }
